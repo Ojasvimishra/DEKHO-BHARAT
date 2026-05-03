@@ -118,7 +118,7 @@ const App = () => {
     const voucherId = `DB-EXPLORE-${Math.floor(Math.random() * 9000) + 1000}`;
 
     try {
-      const response = await fetch('http://127.0.0.1:4000/api/bookings', {
+      const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -160,7 +160,7 @@ const App = () => {
     }
 
     try {
-      const response = await fetch(`http://127.0.0.1:4000/api/bookings/${voucherId}`, {
+      const response = await fetch(`/api/bookings/${voucherId}`, {
         method: 'DELETE'
       });
 

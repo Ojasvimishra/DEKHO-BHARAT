@@ -29,7 +29,7 @@ const LoginPage = ({ onLogin }) => {
         const endpoint = isLogin ? '/api/login' : '/api/signup';
 
         try {
-            const response = await fetch(`http://127.0.0.1:4000${endpoint}`, {
+            const response = await fetch(`${endpoint}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
