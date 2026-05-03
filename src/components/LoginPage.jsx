@@ -4,15 +4,15 @@ import { User, Mail, Lock, ArrowRight, Facebook, Twitter, Instagram, Github, Chr
 
 const LoginPage = ({ onLogin }) => {
     const assetImages = [
-        "/src/assets/Bir%20Billing.jpg",
-        "/src/assets/rameshwerm.jpg",
-        "/src/assets/senturies.jpg",
-        "/src/assets/leh.jpg",
-        "/src/assets/Spity.jpg",
-        "/src/assets/Andaman.jpg",
-        "/src/assets/Havelock.jpg",
-        "/src/assets/gulmarg.jpg",
-        "/src/assets/living%20jungle.jpg"
+        "/assets/Bir%20Billing.jpg",
+        "/assets/rameshwerm.jpg",
+        "/assets/senturies.jpg",
+        "/assets/leh.jpg",
+        "/assets/Spity.jpg",
+        "/assets/Andaman.jpg",
+        "/assets/Havelock.jpg",
+        "/assets/gulmarg.jpg",
+        "/assets/living%20jungle.jpg"
     ];
 
     const [randomHero, setRandomHero] = useState(assetImages[Math.floor(Math.random() * assetImages.length)]);
@@ -39,7 +39,7 @@ const LoginPage = ({ onLogin }) => {
             if (data.success) {
                 onLogin(data.user);
             } else {
-                setError(data.message || 'Authentication failed');
+                setError(data.message || data.error || 'Authentication failed');
             }
         } catch (err) {
             setError('Connection to backend failed');

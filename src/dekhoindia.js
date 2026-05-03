@@ -9,20 +9,20 @@
  */
 
 // --- LOCAL ASSET PATHS (Node-compatible) ---
-const spitiImg = "/src/assets/Spity.jpg";
-const dalhousieImg = "/src/assets/Dalhousie.jpg";
-const coorgImg = "/src/assets/Coorg-1.jpg";
-const indiaMapImg = "/src/assets/download%20(1).jpg";
-const peacefulImg = "/src/assets/senturies.jpg";
-const khajjiarImg = "/src/assets/dalhousie.webp";
-const lehImg = "/src/assets/leh.jpg";
-const andamanImg = "/src/assets/Andaman.jpg";
-const gulmargImg = "/src/assets/gulmarg.jpg";
-const birBillingImg = "/src/assets/Bir%20Billing.jpg";
-const backpackerImg = "/src/assets/backpacke.jpg";
-const rameswaramImg = "/src/assets/rameshwerm.jpg";
-const jungleImg = "/src/assets/living%20jungle.jpg";
-const havelockImg = "/src/assets/Havelock.jpg";
+const spitiImg = "/assets/Spity.jpg";
+const dalhousieImg = "/assets/Dalhousie.jpg";
+const coorgImg = "/assets/Coorg-1.jpg";
+const indiaMapImg = "/assets/download%20(1).jpg";
+const peacefulImg = "/assets/senturies.jpg";
+const khajjiarImg = "/assets/dalhousie.webp";
+const lehImg = "/assets/leh.jpg";
+const andamanImg = "/assets/Andaman.jpg";
+const gulmargImg = "/assets/gulmarg.jpg";
+const birBillingImg = "/assets/Bir%20Billing.jpg";
+const backpackerImg = "/assets/backpacke.jpg";
+const rameswaramImg = "/assets/rameshwerm.jpg";
+const jungleImg = "/assets/living%20jungle.jpg";
+const havelockImg = "/assets/Havelock.jpg";
 
 // --- 1. THE KNOWLEDGE BASE (N-ary Tree Structure) ---
 export const treeData = {

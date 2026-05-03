@@ -57,17 +57,17 @@ const App = () => {
 
   // Global Asset Pool for Randomization
   const assetPool = [
-    "/src/assets/Bir%20Billing.jpg",
-    "/src/assets/rameshwerm.jpg",
-    "/src/assets/senturies.jpg",
-    "/src/assets/leh.jpg",
-    "/src/assets/Spity.jpg",
-    "/src/assets/Andaman.jpg",
-    "/src/assets/Havelock.jpg",
-    "/src/assets/gulmarg.jpg",
-    "/src/assets/living%20jungle.jpg",
-    "/src/assets/Coorg-1.jpg",
-    "/src/assets/Dalhousie.jpg"
+    "/assets/Bir%20Billing.jpg",
+    "/assets/rameshwerm.jpg",
+    "/assets/senturies.jpg",
+    "/assets/leh.jpg",
+    "/assets/Spity.jpg",
+    "/assets/Andaman.jpg",
+    "/assets/Havelock.jpg",
+    "/assets/gulmarg.jpg",
+    "/assets/living%20jungle.jpg",
+    "/assets/Coorg-1.jpg",
+    "/assets/Dalhousie.jpg"
   ];
 
   // Pick random images for Home Page sections
@@ -555,7 +555,7 @@ const App = () => {
                               onClick={() => handleNodeClick(child)}
                             >
                               <div className="pill-img-circle">
-                                <img src={child.image || "/src/assets/backpacke.jpg"} alt={child.label} />
+                                <img src={child.image || "/assets/backpacke.jpg"} alt={child.label} />
                               </div>
                               <div className="pill-info">
                                 <strong>{child.label}</strong>
@@ -680,7 +680,7 @@ const App = () => {
                           }}
                           whileHover={{ y: -20, scale: 1.02, rotateY: item.is3D ? 10 : 0 }}
                         >
-                          <img src={item.img || `/src/assets/india${item.num}.jpg`} alt={item.title} />
+                          <img src={item.img || `/assets/india${item.num}.jpg`} alt={item.title} />
                           <div className="showreel-overlay">
                             {item.is3D && <div className="floating-culture-badge">Vibrant Bharat</div>}
                             <span className="showreel-number">India {item.id}</span>
@@ -752,7 +752,7 @@ const App = () => {
                               whileHover={{ scale: 1.02 }}
                             >
                               <div className="card-image-box">
-                                <img src={child.image || "/src/assets/backpacke.jpg"} alt={child.label || child.city} />
+                                <img src={child.image || "/assets/backpacke.jpg"} alt={child.label || child.city} />
                                 <div className="card-overlay-gradient"></div>
                               </div>
                               <div className="card-text-overlay">
