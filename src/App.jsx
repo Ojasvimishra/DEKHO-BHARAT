@@ -1,3 +1,5 @@
+
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -24,11 +26,16 @@ import {
   Sun,
   Moon,
   Play,
-  ChevronDown
+  ChevronDown,
+  Hotel,
+  Bike,
+  Utensils,
+  Star
 } from 'lucide-react';
-import { treeData, getPathToNode, isLeaf, getAllDestinations, getRecommendations } from './dekhoindia';
+import { treeData, getPathToNode, isLeaf, getAllDestinations, getRecommendations, getAmenities } from './dekhoindia';
 import DsaDashboard from './components/DsaDashboard';
 import LoginPage from './components/LoginPage';
+import Scene3D from './components/Scene3D';
 import './dekhoindia-styles.css';
 import './login-styles.css';
 import { LogOut } from 'lucide-react';
@@ -208,8 +215,42 @@ const App = () => {
           <div style={{ width: '70px' }}></div> /* Spacer to keep logo centered */
         )}
 
-        <div className="logo" onClick={resetJourney}>
-          <h1>DEKHO <span>BHARAT</span></h1>
+        <div 
+            className="logo-marquee-container" 
+            onClick={resetJourney}
+            title="Return to Home"
+            style={{ 
+                cursor: 'pointer', 
+                overflow: 'hidden', 
+                whiteSpace: 'nowrap', 
+                width: '320px', 
+                display: 'flex', 
+                alignItems: 'center',
+                maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+            }}
+        >
+           <motion.div
+               animate={{ x: [0, -325] }}
+               transition={{ ease: "linear", duration: 5, repeat: Infinity }}
+               style={{ display: 'flex', gap: '30px', alignItems: 'center' }}
+           >
+              {[1, 2, 3, 4, 5, 6].map(i => (
+                  <h1 key={i} style={{ 
+                      fontSize: '2rem', 
+                      fontWeight: '900', 
+                      letterSpacing: '2px', 
+                      margin: 0,
+                      textShadow: '0 0 15px rgba(74, 222, 128, 0.4)',
+                      display: 'flex',
+                      alignItems: 'center'
+                  }}>
+                      <span style={{ color: '#fff' }}>DEKHO </span>
+                      <span style={{ background: 'linear-gradient(90deg, #4ade80, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginLeft: '6px' }}>BHARAT</span>
+                      <span style={{ color: '#3b82f6', fontSize: '1rem', marginLeft: '30px' }}>✦</span>
+                  </h1>
+              ))}
+           </motion.div>
         </div>
 
         <div className="header-actions">
@@ -394,6 +435,56 @@ const App = () => {
                     </div>
                   )}
 
+                  {/* Amenities Section */}
+                  <div className="amenities-container" style={{ marginTop: '3rem' }}>
+                     <div className="compendium-header" style={{ marginBottom: '1.5rem' }}><Hotel size={24} className="accent-text" /><h3>LOCAL AMENITIES</h3></div>
+                     
+                     <div className="amenities-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                        
+                        {/* Hotels */}
+                        <div className="amenity-card glass-card" style={{ padding: '1.5rem', borderRadius: '16px' }}>
+                           <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem', marginBottom: '1rem' }}><Hotel size={18} /> Top Accommodations</h4>
+                           {getAmenities(currentNode.city || currentNode.label).hotels.map(h => (
+                              <div key={h.id} style={{ marginBottom: '1rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px' }}>
+                                 <strong>{h.name}</strong>
+                                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+                                    <span>{h.tier}</span>
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Star size={12} fill="var(--warning)" color="var(--warning)"/> {h.rating}</span>
+                                 </div>
+                                 <div style={{ color: 'var(--primary)', fontSize: '0.9rem', marginTop: '0.5rem' }}>{h.price}</div>
+                              </div>
+                           ))}
+                        </div>
+
+                        {/* Bike Rentals */}
+                        <div className="amenity-card glass-card" style={{ padding: '1.5rem', borderRadius: '16px' }}>
+                           <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem', marginBottom: '1rem' }}><Bike size={18} /> Commute & Rentals</h4>
+                           {getAmenities(currentNode.city || currentNode.label).bikeRentals.map(b => (
+                              <div key={b.id} style={{ marginBottom: '1rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px' }}>
+                                 <strong>{b.vendor}</strong>
+                                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>{b.vehicles}</p>
+                                 <div style={{ color: 'var(--primary)', fontSize: '0.9rem', marginTop: '0.5rem' }}>{b.price}</div>
+                              </div>
+                           ))}
+                        </div>
+
+                        {/* Restaurants */}
+                        <div className="amenity-card glass-card" style={{ padding: '1.5rem', borderRadius: '16px' }}>
+                           <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem', marginBottom: '1rem' }}><Utensils size={18} /> Top Eateries</h4>
+                           {getAmenities(currentNode.city || currentNode.label).restaurants.map(r => (
+                              <div key={r.id} style={{ marginBottom: '1rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px' }}>
+                                 <strong>{r.name}</strong>
+                                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>Best: {r.bestDish}</p>
+                                 <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+                                    <Star size={12} fill="var(--warning)" color="var(--warning)"/> {r.rating}
+                                 </div>
+                              </div>
+                           ))}
+                        </div>
+
+                     </div>
+                  </div>
+
                   <div className="safety-protocol" style={{ marginTop: '2rem', padding: '2rem', background: 'rgba(255,255,100,0.02)', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.1)' }}>
                     <div className="compendium-header" style={{ marginBottom: '1rem' }}><Shield size={20} style={{ color: '#ffcc00' }} /><h3>SAFETY_PROTOCOL</h3></div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.8rem' }}>
@@ -487,6 +578,68 @@ const App = () => {
                       </motion.div>
                     </div>
 
+                    {/* Interactive 3D Map and Project Details Container */}
+                    <div className="map-and-details-section" style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', marginBottom: '1.5rem', alignItems: 'stretch' }}>
+                        {/* Left Side: 3D Globe */}
+                        <motion.div 
+                            initial={{ opacity: 0 }} 
+                            animate={{ opacity: 1 }} 
+                            transition={{ delay: 0.8, duration: 1 }}
+                            className="globe-3d-box"
+                            style={{ 
+                                flex: '0 0 450px', 
+                                height: '450px', 
+                                borderRadius: '24px', 
+                                overflow: 'hidden', 
+                                background: 'rgba(0,0,0,0.4)', 
+                                border: '1px solid rgba(255,255,255,0.05)',
+                                position: 'relative'
+                            }}
+                        >
+                            <Scene3D />
+                            <div style={{ textAlign: 'center', padding: '10px', color: 'var(--text-secondary)', fontSize: '0.8rem', position: 'absolute', bottom: 0, width: '100%', background: 'rgba(0,0,0,0.6)', pointerEvents: 'none' }}>
+                                Drag to rotate • Scroll to zoom
+                            </div>
+                        </motion.div>
+
+                        {/* Right Side: Details about Dekho Bharat */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 20 }} 
+                            animate={{ opacity: 1, x: 0 }} 
+                            transition={{ delay: 1, duration: 0.8 }}
+                            className="project-details-panel glass-panel"
+                            style={{ 
+                                flex: 1, 
+                                padding: '1.5rem', 
+                                display: 'flex', 
+                                flexDirection: 'column', 
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <h2 style={{ fontSize: '2rem', marginBottom: '1rem', background: 'linear-gradient(90deg, #4ade80, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                                Welcome to Dekho Bharat
+                            </h2>
+                            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+                                India is a mesmerizing mosaic of majestic landscapes, ancient heritage, and vibrant cultures. 
+                                Dekho Bharat is your intelligent travel companion, designed to help you navigate and explore the hidden gems of this incredible subcontinent with unprecedented ease.
+                            </p>
+                            
+                            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Compass size={18} color="#4ade80" /> Our Services
+                            </h3>
+                            <ul style={{ listStyle: 'none', padding: 0, color: 'var(--text-secondary)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+                                <li style={{ background: 'rgba(255,255,255,0.03)', padding: '0.8rem', borderRadius: '8px', borderLeft: '2px solid #4ade80' }}>🗺️ AI-Powered Routings</li>
+                                <li style={{ background: 'rgba(255,255,255,0.03)', padding: '0.8rem', borderRadius: '8px', borderLeft: '2px solid #3b82f6' }}>🏨 Top Accommodations</li>
+                                <li style={{ background: 'rgba(255,255,255,0.03)', padding: '0.8rem', borderRadius: '8px', borderLeft: '2px solid #f59e0b' }}>🚲 Commute Booking</li>
+                                <li style={{ background: 'rgba(255,255,255,0.03)', padding: '0.8rem', borderRadius: '8px', borderLeft: '2px solid #ef4444' }}>🍽️ Local Eateries Planner</li>
+                            </ul>
+                            
+                            <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '1.2rem', borderRadius: '12px', border: '1px dashed rgba(74, 222, 128, 0.3)' }}>
+                                <strong style={{ color: '#4ade80', display: 'block', marginBottom: '0.5rem' }}>Experience the Heart of Bharat</strong>
+                                <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>From the snow-capped peaks of Leh to the tropical backwaters of Munnar, every location curated in Dekho Bharat is thoroughly researched to ensure optimal travel experiences.</span>
+                            </div>
+                        </motion.div>
+                    </div>
                     {/* Bottom Gallery Section */}
                     {/* India Showreel Section */}
                     <div className="india-showreel">

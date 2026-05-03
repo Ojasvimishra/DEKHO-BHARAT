@@ -10,8 +10,8 @@ app.use(cors());
 app.use(express.json());
 
 // --- MONGODB CONNECTION ---
-mongoose.connect('mongodb://127.0.0.1:27017/dekhoindia')
-  .then(() => console.log('✅ Connected to MongoDB (Dekho India)'))
+mongoose.connect('mongodb+srv://ojasvimishra1234:Ojasvi%401234@cluster0.1wh0reo.mongodb.net/dekhoindia?retryWrites=true&w=majority')
+  .then(() => console.log('✅ Connected to MongoDB Atlas (Dekho India)'))
   .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
 // --- BOOKING SCHEMA ---

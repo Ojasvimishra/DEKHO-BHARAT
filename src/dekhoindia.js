@@ -881,3 +881,25 @@ export const buildTrieFromTree = (root) => {
     destinations.forEach(dest => trie.insert(dest));
     return trie;
 };
+
+/**
+ * DYNAMIC AMENITIES GENERATOR
+ * Generates custom structured data for Hotels, Bike Rentals, and Restaurants dynamically for each location.
+ */
+export const getAmenities = (city) => {
+    return {
+        hotels: [
+            { id: 1, name: `${city || 'Local'} Grand Resort & Spa`, tier: '5-Star Luxury', price: '₹8,500/night', rating: '4.9' },
+            { id: 2, name: `The Heritage Boutique ${city || 'Stay'}`, tier: '4-Star Premium', price: '₹4,200/night', rating: '4.7' },
+            { id: 3, name: `${city || 'Valley'} Backpackers Hostel`, tier: 'Budget / Dorms', price: '₹750/night', rating: '4.5' }
+        ],
+        bikeRentals: [
+            { id: 1, vendor: 'Eagle Rider Rentals', vehicles: 'Royal Enfield Himalayan / Classic 350', price: '₹1,200/day' },
+            { id: 2, vendor: 'City Cruisers', vehicles: 'Honda Activa / TVS Ntorq', price: '₹500/day' }
+        ],
+        restaurants: [
+            { id: 1, name: 'The Authentic Spice Room', bestDish: 'Chef Special Local Thali', rating: '4.8' },
+            { id: 2, name: 'Cafe Wanderlust Skyline', bestDish: 'Woodfired Pizza & Artisan Coffee', rating: '4.6' }
+        ]
+    };
+};
