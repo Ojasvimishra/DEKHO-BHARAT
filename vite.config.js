@@ -12,5 +12,23 @@ export default defineConfig({
         secure: false,
       }
     }
+  },
+  build: {
+    chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('three') || id.includes('@react-three')) {
+              return 'vendor-three';
+            }
+            if (id.includes('react') || id.includes('framer-motion')) {
+              return 'vendor-core';
+            }
+            return 'vendor';
+          }
+        }
+      }
+    }
   }
 })
