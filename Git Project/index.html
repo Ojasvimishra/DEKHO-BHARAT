@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern DevOps Website</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+      color:#333;
+    }
+
+    header{
+      background:linear-gradient(135deg,#0077ff,#00c6ff);
+      color:white;
+      padding:20px 8%;
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:25px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:yellow;
+    }
+
+    .hero{
+      height:85vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:20px;
+      width:70%;
+      line-height:1.6;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      padding:15px 35px;
+      border:none;
+      background:white;
+      color:#0077ff;
+      font-size:18px;
+      border-radius:30px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#222;
+      color:white;
+      transform:scale(1.05);
+    }
+
+    .services{
+      padding:80px 8%;
+      text-align:center;
+    }
+
+    .services h2{
+      font-size:40px;
+      margin-bottom:50px;
+      color:#0077ff;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:white;
+      padding:30px;
+      border-radius:15px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      color:#0077ff;
+    }
+
+    .about{
+      padding:80px 8%;
+      background:#fff;
+      text-align:center;
+    }
+
+    .about h2{
+      font-size:40px;
+      margin-bottom:20px;
+      color:#0077ff;
+    }
+
+    .about p{
+      max-width:800px;
+      margin:auto;
+      line-height:1.8;
+      font-size:18px;
+    }
+
+    footer{
+      background:#111;
+      color:white;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+    }
+
+    @media(max-width:768px){
+      .hero h1{
+        font-size:40px;
+      }
+
+      .hero p{
+        width:90%;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">DevOps World</div>
+
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero">
+      <h1>Welcome to DevOps World</h1>
+
+      <p>
+        Learn DevOps tools, CI/CD pipelines, Docker, Kubernetes,
+        Cloud Computing and modern deployment technologies
+        with practical projects and real-world examples.
+      </p>
+
+      <button class="btn">Get Started</button>
+    </div>
+  </header>
+
+  <section class="services">
+    <h2>Our Services</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>CI/CD Pipeline</h3>
+        <p>
+          Automate your software delivery process using Jenkins,
+          GitHub Actions and GitLab CI/CD.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Docker Containers</h3>
+        <p>
+          Build lightweight and portable applications using Docker
+          container technology.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Kubernetes</h3>
+        <p>
+          Manage and scale containerized applications efficiently
+          using Kubernetes orchestration.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>About Us</h2>
+
+    <p>
+      We provide modern DevOps learning resources and cloud solutions
+      for students, developers and companies. Our goal is to simplify
+      automation, deployment and infrastructure management through
+      practical and easy-to-understand tutorials.
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2026 DevOps World | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
