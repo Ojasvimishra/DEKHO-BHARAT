@@ -1,58 +1,102 @@
-# Dekho Bharat (Voyage Wise) 🇮🇳✈️
+# Dekho Bharat – DSA-Powered Travel Discovery Platform
 
-**Dekho Bharat** is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) travel discovery platform that uniquely integrates core **Data Structures and Algorithms (DSA)** for highly optimized performance and navigation.
+Dekho Bharat is a full-stack, production-grade demo project that showcases core Data Structures & Algorithms (DSA) concepts in a real-world travel discovery and booking application. It features:
 
-## 🚀 Features & Architecture
+*   An interactive React frontend (with Vite)
+*   A Node.js/Express backend with MongoDB
+*   A DSA engine (N-ary Tree, Trie, DFS, and more) powering the travel logic
 
-### Core Tech Stack
-*   **Frontend:** React, Vite, Tailwind CSS / Framer Motion
-*   **Backend:** Node.js, Express.js
-*   **Database:** MongoDB (with Mongoose)
+## 🚀 Features
+*   **N-ary Tree** for hierarchical travel categories and destinations
+*   **Trie (Prefix Tree)** for fast city search and autocomplete
+*   **DFS Traversal** for navigation, breadcrumbs, and pathfinding
+*   **Booking system** with MongoDB (activities, guides, vouchers)
+*   **User authentication** (signup/login)
+*   **Algorithm visualization** (tree navigation, logs)
+*   **Modern UI** with dark/light themes and responsive design
 
-### Data Structures & Algorithms Integration
-Instead of relying solely on heavy database queries, this project implements advanced data structures directly into the backend logic:
-*   **N-ary Tree & DFS:** Travel categories (Style -> Region -> Destination) are modeled as an N-ary tree. The application uses Depth-First Search (DFS) to traverse nodes instantly, generating dynamic breadcrumbs and handling navigation.
-*   **Trie (Prefix Tree):** A specialized Trie structure indexes all city names on server start. This allows the search bar to fetch auto-complete suggestions in **O(L) time complexity** (where L is the query length), providing lightning-fast search capabilities.
+## 🗺️ Project Structure
+*   `src/dekhoindia.js`: DSA logic (N-ary tree, Trie, DFS, helpers)
+*   `src/App.jsx`: Main React app (UI, navigation, state)
+*   `src/components/DsaDashboard.jsx`: Tree/algorithm visualization
+*   `src/components/LoginPage.jsx`: User authentication UI
+*   `server.js`: Express backend (API, MongoDB, DSA integration)
+*   `public/`, `src/assets/`: Static assets and images
+*   `reference/`: Java reference implementations for DSA core
 
-## 🛠️ DevOps & Deployment
+## 🏗️ Setup & Installation
+**Clone the repo:**
+```bash
+git clone https://github.com/Ojasvimishra/DEKHO-BHARAT.git
+cd DEKHO-BHARAT
+```
+**Install dependencies:**
+```bash
+npm install
+```
+**Start MongoDB** (local, default port 27017)
 
-This project heavily utilizes modern DevOps practices for containerization, orchestration, and continuous deployment.
+**Run both frontend & backend:**
+```bash
+npm run dev:full
+```
+*   Frontend: `http://localhost:5173`
+*   Backend: `http://localhost:4000/api/health`
 
-### Containerization (Docker)
-The application uses Docker to eliminate the "it works on my machine" problem, ensuring consistency across development and production environments.
-*   **Backend:** Containerized using a lightweight Node.js image (`Dockerfile.backend`).
-*   **Frontend (Multi-Stage Build):** The `Dockerfile.frontend` utilizes a highly optimized multi-stage build:
-    1.  **Build Stage:** Uses a Node image to compile the React/Vite source code.
-    2.  **Serve Stage:** Uses a tiny **Nginx** image to serve the compiled static files, discarding the heavy `node_modules` directory for a secure, minimal production footprint.
+## 🔌 API Endpoints
+| Endpoint | Method | Description |
+| :--- | :--- | :--- |
+| `/api/tree` | GET | Get the full travel decision tree |
+| `/api/node/:id` | GET | Find a node by ID (DFS) |
+| `/api/path/:id` | GET | Get breadcrumb path to a node |
+| `/api/search?q=...` | GET | Trie-based prefix search for cities |
+| `/api/signup` | POST | User signup |
+| `/api/login` | POST | User login |
+| `/api/book` | POST | Book an activity (with user details) |
 
-### Orchestration (Docker Compose)
-`docker-compose.yml` is used to orchestrate the multi-container environment. A single command (`docker-compose up -d`) spins up both the Nginx frontend and Node.js backend, automatically handling their internal networking and startup order.
+## 🧠 DSA/Algorithmic Core
+*   **N-ary Tree:**
+    Models the travel hierarchy: Root → Category → City. Used for navigation, recommendations, and pathfinding.
+*   **DFS (Depth-First Search):**
+    Finds nodes, builds breadcrumbs, and traverses the tree.
+*   **Trie (Prefix Tree):**
+    Indexes all cities for O(L) prefix search (autocomplete).
+*   **MongoDB:**
+    Stores bookings and user accounts.
+*   **Java Reference:**
+    See `reference/` for academic/DSA Java implementations.
 
-### Cloud Hosting: AWS EC2 vs. Vercel
-While Vercel is excellent for serverless frontends, this project is designed for **AWS EC2 (IaaS)**. 
-*   **Why EC2?** Our Express backend and MongoDB connections require a persistent, always-on server environment. Serverless platforms can suffer from "cold starts" and strict timeouts which disrupt persistent APIs and WebSocket connections. EC2 provides full control over our virtual machine, allowing us to run Docker containers continuously and configure our networking stack precisely.
+## 🖥️ Technologies Used (MERN Stack)
+*   **Frontend (React):** React, Vite, Framer Motion, Lucide Icons. Provides a blazing fast, interactive SPA.
+*   **Backend (Node/Express):** Node.js and Express form a robust REST API serving the DSA logic.
+*   **Database (MongoDB):** MongoDB with Mongoose handles persistent storage for user accounts and bookings.
+*   **DSA Engine:** Custom N-ary Tree, Trie, DFS (JavaScript & Java).
+*   **Dev Tools:** ESLint, Concurrently, Modern CSS.
 
-### CI/CD
-*   The `.github/workflows` directory contains GitHub Actions configurations to automate testing, building, and deployment processes directly from the repository.
+## 🛠️ DevOps, Containerization & Deployment
+This project integrates production-ready DevOps practices:
 
----
+*   **Docker Containerization:** 
+    *   **Backend:** Uses a lightweight Node image.
+    *   **Frontend (Multi-stage Build):** Compiles the Vite app using Node, then serves the static files using **Nginx**, minimizing the final image size and maximizing security.
+*   **Docker Compose:** 
+    `docker-compose.yml` seamlessly orchestrates the frontend and backend containers, handling ports and internal networking with a single command (`docker-compose up -d`).
+*   **AWS EC2 Hosting:** 
+    Deployed on a continuous AWS EC2 virtual machine rather than a serverless platform (like Vercel) to support the persistent Node.js API, database connections, and background algorithmic processing without "cold start" delays.
+*   **CI/CD Pipeline:** 
+    Configured with GitHub Actions (`.github/workflows`) to automatically build and test code upon push.
 
-## 💻 Local Development
+## 📜 Scripts
+*   `npm run dev` – Start frontend (Vite)
+*   `npm run server` – Start backend (Express)
+*   `npm run dev:full` – Run both frontend & backend concurrently
+*   `npm run build` – Build frontend for production
+*   `npm run lint` – Lint codebase
 
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repo-url>
-   cd "pep project"
-   ```
+## 📚 Reference & Credits
+*   **Project Author:** Ojasvi Mishra
+*   **DSA/Java Reference:** See `reference/` folder
+*   **Inspired by:** Indian travel, DSA pedagogy, and open-source learning
 
-2. **Run with Docker (Recommended):**
-   ```bash
-   docker-compose up --build
-   ```
-   *Frontend will be available on port 80, Backend on port 4000.*
-
-3. **Run manually:**
-   ```bash
-   npm install
-   npm run dev:full # Runs both Vite dev server and Node backend concurrently
-   ```
+## 🏁 License
+This project is for educational/demo purposes. Feel free to fork, adapt, and learn!
