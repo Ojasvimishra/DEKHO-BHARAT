@@ -20,11 +20,14 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          # Navigate to project directory (assuming it's cloned as DEKHO-BHARAT)
+          # Navigate to project directory
           cd DEKHO-BHARAT
           
           # Pull the latest code
           git pull origin main
+          
+          # Navigate into the subfolder containing the docker-compose file
+          cd "pep project"
           
           # Rebuild and restart the Docker containers
           sudo docker-compose down
