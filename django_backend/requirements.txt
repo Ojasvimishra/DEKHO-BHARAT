@@ -1,0 +1,6 @@
+django>=6.1
+djangorestframework>=3.18
+django-cors-headers>=4.9
+pymongo>=4.19
+djangorestframework-simplejwt>=5.5
+pyjwt>=2.15

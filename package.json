@@ -7,14 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "server": "node server.js",
+    "django": "python django_backend/manage.py runserver 8000 --settings=dekhobharat.settings",
     "dev:full": "concurrently \"npm run dev\" \"npm run server\"",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server\" \"npm run django\"",
+    "django:migrate": "python django_backend/manage.py migrate --settings=dekhobharat.settings",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
-    "@vercel/analytics": "^2.0.1",
     "concurrently": "^9.1.2",
     "cors": "^2.8.5",
     "express": "^5.0.1",
@@ -22,8 +22,7 @@
     "lucide-react": "^0.574.0",
     "mongoose": "^9.2.2",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "three": "^0.183.2"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -4,15 +4,15 @@ import { User, Mail, Lock, ArrowRight, Facebook, Twitter, Instagram, Github, Chr
 
 const LoginPage = ({ onLogin }) => {
     const assetImages = [
-        "/assets/Bir%20Billing.jpg",
-        "/assets/rameshwerm.jpg",
-        "/assets/senturies.jpg",
-        "/assets/leh.jpg",
-        "/assets/Spity.jpg",
-        "/assets/Andaman.jpg",
-        "/assets/Havelock.jpg",
-        "/assets/gulmarg.jpg",
-        "/assets/living%20jungle.jpg"
+        "/src/assets/Bir%20Billing.jpg",
+        "/src/assets/rameshwerm.jpg",
+        "/src/assets/senturies.jpg",
+        "/src/assets/leh.jpg",
+        "/src/assets/Spity.jpg",
+        "/src/assets/Andaman.jpg",
+        "/src/assets/Havelock.jpg",
+        "/src/assets/gulmarg.jpg",
+        "/src/assets/living%20jungle.jpg"
     ];
 
     const [randomHero, setRandomHero] = useState(assetImages[Math.floor(Math.random() * assetImages.length)]);
@@ -29,20 +29,17 @@ const LoginPage = ({ onLogin }) => {
         const endpoint = isLogin ? '/api/login' : '/api/signup';
 
         try {
-            const response = await fetch(`${endpoint}`, {
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
             const data = await response.json();
-            if (data.success) {
-                onLogin(data.user);
-            } else {
-                setError(data.message || data.error || 'Authentication failed');
-            }
-        } catch (err) {
-            setError('Connection to backend failed');
+            if (!response.ok || !data.success) throw new Error(data.message || 'Authentication failed');
+            onLogin(data.user);
+        } catch (requestError) {
+            setError(requestError.message || 'Connection to the backend failed.');
         } finally {
             setLoading(false);
         }

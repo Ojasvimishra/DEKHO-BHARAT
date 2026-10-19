@@ -9,20 +9,20 @@
  */
 
 // --- LOCAL ASSET PATHS (Node-compatible) ---
-const spitiImg = "/assets/Spity.jpg";
-const dalhousieImg = "/assets/Dalhousie.jpg";
-const coorgImg = "/assets/Coorg-1.jpg";
-const indiaMapImg = "/assets/download%20(1).jpg";
-const peacefulImg = "/assets/senturies.jpg";
-const khajjiarImg = "/assets/dalhousie.webp";
-const lehImg = "/assets/leh.jpg";
-const andamanImg = "/assets/Andaman.jpg";
-const gulmargImg = "/assets/gulmarg.jpg";
-const birBillingImg = "/assets/Bir%20Billing.jpg";
-const backpackerImg = "/assets/backpacke.jpg";
-const rameswaramImg = "/assets/rameshwerm.jpg";
-const jungleImg = "/assets/living%20jungle.jpg";
-const havelockImg = "/assets/Havelock.jpg";
+const spitiImg = "/src/assets/Spity.jpg";
+const dalhousieImg = "/src/assets/Dalhousie.jpg";
+const coorgImg = "/src/assets/Coorg-1.jpg";
+const indiaMapImg = "/src/assets/download%20(1).jpg";
+const peacefulImg = "/src/assets/senturies.jpg";
+const khajjiarImg = "/src/assets/dalhousie.webp";
+const lehImg = "/src/assets/leh.jpg";
+const andamanImg = "/src/assets/Andaman.jpg";
+const gulmargImg = "/src/assets/gulmarg.jpg";
+const birBillingImg = "/src/assets/Bir%20Billing.jpg";
+const backpackerImg = "/src/assets/backpacke.jpg";
+const rameswaramImg = "/src/assets/rameshwerm.jpg";
+const jungleImg = "/src/assets/living%20jungle.jpg";
+const havelockImg = "/src/assets/Havelock.jpg";
 
 // --- 1. THE KNOWLEDGE BASE (N-ary Tree Structure) ---
 export const treeData = {
@@ -880,26 +880,4 @@ export const buildTrieFromTree = (root) => {
     const destinations = getAllDestinations(root);
     destinations.forEach(dest => trie.insert(dest));
     return trie;
-};
-
-/**
- * DYNAMIC AMENITIES GENERATOR
- * Generates custom structured data for Hotels, Bike Rentals, and Restaurants dynamically for each location.
- */
-export const getAmenities = (city) => {
-    return {
-        hotels: [
-            { id: 1, name: `${city || 'Local'} Grand Resort & Spa`, tier: '5-Star Luxury', price: '₹8,500/night', rating: '4.9' },
-            { id: 2, name: `The Heritage Boutique ${city || 'Stay'}`, tier: '4-Star Premium', price: '₹4,200/night', rating: '4.7' },
-            { id: 3, name: `${city || 'Valley'} Backpackers Hostel`, tier: 'Budget / Dorms', price: '₹750/night', rating: '4.5' }
-        ],
-        bikeRentals: [
-            { id: 1, vendor: 'Eagle Rider Rentals', vehicles: 'Royal Enfield Himalayan / Classic 350', price: '₹1,200/day' },
-            { id: 2, vendor: 'City Cruisers', vehicles: 'Honda Activa / TVS Ntorq', price: '₹500/day' }
-        ],
-        restaurants: [
-            { id: 1, name: 'The Authentic Spice Room', bestDish: 'Chef Special Local Thali', rating: '4.8' },
-            { id: 2, name: 'Cafe Wanderlust Skyline', bestDish: 'Woodfired Pizza & Artisan Coffee', rating: '4.6' }
-        ]
-    };
 };

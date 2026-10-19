@@ -44,6 +44,12 @@ npm run dev:full
 *   Frontend: `http://localhost:5173`
 *   Backend: `http://localhost:4000/api/health`
 
+### Deploy to Vercel
+
+Import this GitHub repository into Vercel with the project root set to the repository root. The Vite frontend builds to `dist`; `api/[...path].js` routes `/api/*` requests to the Express API. Configure `MONGODB_URI` in the Vercel project environment variables with a MongoDB Atlas connection string and allow Vercel's deployment network access in Atlas before deploying. The local MongoDB default is used only outside Vercel.
+
+For local development, run Vite and Express (`npm run dev:full`). The Vite development server proxies `/api` to Express on port 4000.
+
 ## 🔌 API Endpoints
 | Endpoint | Method | Description |
 | :--- | :--- | :--- |
